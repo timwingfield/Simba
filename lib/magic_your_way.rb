@@ -37,7 +37,6 @@ class MagicYourWay
       "9" => 240,
       "10" => 243
     }
-    
     self
   end
   
