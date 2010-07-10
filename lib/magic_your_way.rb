@@ -41,6 +41,22 @@ class MagicYourWay
     self
   end
   
+  def child
+    @base_price = {
+      "1" => 68,
+      "2" => 133,
+      "3" => 187,
+      "4" => 192,
+      "5" => 195,
+      "6" => 198,
+      "7" => 201,
+      "8" => 204,
+      "9" => 207,
+      "10" => 210
+    }
+    self
+  end
+  
   def days(no_of_days)
     @no_of_days = no_of_days
     self.price = base_price[no_of_days.to_s]
