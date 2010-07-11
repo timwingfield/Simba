@@ -87,4 +87,85 @@ describe TicketWizard do
       @tw.ap_child.price.should be(432)
     end    
   end
+  
+  describe "when visiting 5 days and visiting water parks twice" do
+    before :each do
+      @tw.days = 5
+      @tw.water_park_visits = 2
+      @tw.calculate_tickets
+    end
+
+    it "should have an adult myw price of 280" do
+      @tw.myw_adult.price.should be(280)
+    end
+
+    it "should have a child myw price of 247" do
+      @tw.myw_child.price.should be(247)
+    end
+
+    it "should have an adult ap price of 489" do
+      @tw.ap_adult.price.should be(489)
+    end
+
+    it "should have a child ap price of 432" do
+      @tw.ap_child.price.should be(432)
+    end
+  end
+  
+  describe "when visiting for 10 days, park hopping, and visiting water parks 3 times" do
+    before :each do
+      @tw.days = 10
+      @tw.water_park_visits = 3
+      @tw.park_hopping = true
+      @tw.calculate_tickets
+    end
+    
+    it "should have an adult myw price of 347" do
+      @tw.myw_adult.price.should be(347)
+    end
+    
+    it "should have a child myw price of 314" do
+      @tw.myw_child.price.should be(314)
+    end
+    
+    it "should have an adult annual pass price of 619" do
+      @tw.ap_adult.price.should be(619)
+    end
+    
+    it "should have a child annual pass price of 546" do
+      @tw.ap_child.price.should be(546)
+    end
+    
+    it "should have a premium adult annual pass" do
+      @tw.ap_adult.is_premium.should be_true
+    end
+    
+    it "should have a premium child annual pass" do
+      @tw.ap_child.is_premium.should be_true
+    end
+  end
+  
+  describe "when visiting for 5 days as a dvc member with no water park visits and no park hopping" do
+    
+  end
+  
+  describe "when visiting for 3 days with 1 water park visit" do
+    it "should return a magic your way total cost that includes 1 water park ticket" do
+      
+    end
+    
+    it "should return a total annual pass cost that includes 1 water park ticket" do
+      
+    end
+  end
+  
+  describe "when visiting for 5 days with 2 water park visits" do
+    it "should return a total magic your way cost without the cost of a water park ticket" do
+      
+    end
+    
+    it "should return a total annual pass cost that includes 2 water park tickets" do
+      
+    end
+  end
 end

@@ -20,12 +20,22 @@ class TicketWizard
   end
   
   def calculate_tickets
-    @myw_adult.days(@days)
-    @myw_child.days(@days)
+    myw_adult.days(@days)
+    myw_child.days(@days)
     
     if park_hopping
-      @myw_adult.park_hopper
-      @myw_child.park_hopper
+      myw_adult.park_hopper
+      myw_child.park_hopper
+    end
+    
+    if water_park_visits >= 2
+      myw_adult.water_park_fun_and_more
+      myw_child.water_park_fun_and_more
+    end
+    
+    if water_park_visits >=3
+      ap_adult.premium
+      ap_child.premium
     end
   end
 end
