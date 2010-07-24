@@ -143,10 +143,42 @@ describe TicketWizard do
     it "should have a premium child annual pass" do
       @tw.ap_child.is_premium.should be_true
     end
+    
+    it "should not have dvc set" do
+      @tw.dvc_member.should be_false
+    end
   end
   
   describe "when visiting for 5 days as a dvc member with no water park visits and no park hopping" do
+    before :each do
+      @tw.days = 5
+      @tw.dvc_member = true
+      @tw.calculate_tickets
+    end
     
+    it "should have an adult myw price of 228" do
+      @tw.myw_adult.price.should be(228)
+    end
+    
+    it "should have a child myw price of 195" do
+      @tw.myw_child.price.should be(195)
+    end
+    
+    it "should have an adult annual pass price of 389" do
+      @tw.ap_adult.price.should be(389)
+    end
+    
+    it "should have a child annual price pass of 344" do
+      @tw.ap_child.price.should be(344)
+    end
+    
+    it "should not have a premium adult annual pass" do
+      @tw.ap_adult.is_premium.should be_false
+    end
+    
+    it "should not have a premium child annual pass" do
+      @tw.ap_child.is_premium.should be_false
+    end
   end
   
   describe "when visiting for 3 days with 1 water park visit" do

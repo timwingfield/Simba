@@ -37,5 +37,10 @@ class TicketWizard
       ap_adult.premium
       ap_child.premium
     end
+    
+    if dvc_member
+      ap_adult.dvc
+      ap_child.dvc
+    end
   end
 end
