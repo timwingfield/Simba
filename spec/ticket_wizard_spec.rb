@@ -17,6 +17,14 @@ describe TicketWizard do
     @tw.water_park_visits.should be(0)
   end
   
+  it "should initialize mya water park tickets needed to 0" do
+    @tw.myw_water_park_tickets_needed.should be(0)
+  end
+  
+  it "should initialize ap water park tickets needed to 0" do
+    @tw.ap_water_park_tickets_needed.should be(0)    
+  end
+  
   it "should initialize park hopping to false" do
     @tw.park_hopping.should be_false
   end
@@ -102,6 +110,14 @@ describe TicketWizard do
     it "should have a child myw price of 247" do
       @tw.myw_child.price.should be(247)
     end
+    
+    it "should have an myw water park tickets needed count of 0" do
+      @tw.myw_water_park_tickets_needed.should be(0)
+    end
+    
+    it "should have an ap water park tickets needed count of 2" do
+      @tw.ap_water_park_tickets_needed.should be(2)
+    end
 
     it "should have an adult ap price of 489" do
       @tw.ap_adult.price.should be(489)
@@ -182,22 +198,29 @@ describe TicketWizard do
   end
   
   describe "when visiting for 3 days with 1 water park visit" do
-    it "should return a magic your way total cost that includes 1 water park ticket" do
-      
+    before :each do
+      @tw.days = 3
+      @tw.water_park_visits = 1
+      @tw.calculate_tickets
     end
     
-    it "should return a total annual pass cost that includes 1 water park ticket" do
-      
+    it "should have an adult myw price of 219" do
+      @tw.myw_adult.price.should be(219)
+    end
+    
+    it "should have an adult annual pass price of 489" do
+      @tw.ap_adult.price.should be(489)
+    end
+    
+    it "should have a myw water park ticket count of 1" do
+      @tw.myw_water_park_tickets_needed.should be(1)
+    end
+    
+    it "should have a ap water park ticket count of 1" do
+      @tw.ap_water_park_tickets_needed.should be(1)
     end
   end
   
-  describe "when visiting for 5 days with 2 water park visits" do
-    it "should return a total magic your way cost without the cost of a water park ticket" do
-      
-    end
-    
-    it "should return a total annual pass cost that includes 2 water park tickets" do
-      
-    end
-  end
+  #add ticket recommendations
+  #use cucumber
 end

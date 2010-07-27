@@ -9,9 +9,15 @@ class TicketWizard
   attr_accessor :ap_adult
   attr_accessor :ap_child
   
+  attr_accessor :myw_water_park_tickets_needed
+  attr_accessor :ap_water_park_tickets_needed
+  
   def initialize
     @water_park_visits = 0
     @days = 0
+    
+    @myw_water_park_tickets_needed = 0
+    @ap_water_park_tickets_needed = 0
     
     @myw_adult = MagicYourWay.new.adult
     @myw_child = MagicYourWay.new.child
@@ -36,6 +42,15 @@ class TicketWizard
     if water_park_visits >=3
       ap_adult.premium
       ap_child.premium
+    end
+    
+    if water_park_visits == 1
+      @myw_water_park_tickets_needed = 1
+      @ap_water_park_tickets_needed = 1
+    end
+    
+    if water_park_visits == 2
+      @ap_water_park_tickets_needed = 2
     end
     
     if dvc_member
