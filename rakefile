@@ -1,0 +1,20 @@
+require 'rake'
+require 'spec/rake/spectask'
+require 'cucumber/rake/task'
+
+desc "Run all examples with RCov"
+Spec::Rake::SpecTask.new('examples_with_rcov') do |t|
+  t.spec_files = FileList['spec/*spec.rb']
+  t.rcov = true
+  #t.rcov_opts = ['--exclude', 'examples']
+end
+
+desc "Run cucumber with the progress output"
+Cucumber::Rake::Task.new(:cuke_progress) do |t|
+  t.cucumber_opts = "features --format progress"
+end
+
+desc "Run cucumber with no source line numbers"
+Cucumber::Rake::Task.new(:cuke) do |t|
+  t.cucumber_opts = "features --no-source"
+end

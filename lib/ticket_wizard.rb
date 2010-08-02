@@ -58,4 +58,13 @@ class TicketWizard
       ap_child.dvc
     end
   end
+
+  def recommend
+    calculate_tickets
+
+    tickets = {
+      "Adult Magic Your Way" => self.myw_adult.price,
+      "Child Magic Your Way" => self.myw_child.price 
+    }
+  end
 end
